@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Club Events</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #18356d;
+
+            /* Background Image */
+            background-image:
+                linear-gradient(
+                    rgba(235, 243, 255, 0.45),
+                    rgba(235, 243, 255, 0.45)
+                ),
+                url("https://static9.depositphotos.com/1260672/1145/i/450/depositphotos_11450943-stock-photo-background-in-show-interior-shined.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 180px;
+            min-height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0.94);
+            padding: 20px 12px;
+            z-index: 10;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .sidebar img {
+            display: block;
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            margin: 0 auto 10px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 15px;
+            color: #18356d;
+        }
+
+        .sidebar p {
+            text-align: center;
+            font-size: 11px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px 10px;
+            margin: 6px 0;
+            text-decoration: none;
+            color: #29446f;
+            font-size: 14px;
+            border-radius: 7px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #dce9ff;
+            color: #1260d6;
+        }
+
+        /* Main Content */
+        .main {
+            margin-left: 180px;
+            padding: 18px 25px;
+        }
+
+        /* Top Header */
+        header {
+            max-width: 1050px;
+            margin: 0 auto 18px;
+            padding: 18px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        .header-title img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .header-title h1 {
+            margin: 0;
+            font-size: 38px;
+            color: #18356d;
+        }
+
+        .header-title h1 span {
+            color: #286bd6;
+        }
+
+        header p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #263b5b;
+        }
+
+        /* General Sections */
+        section {
+            max-width: 1050px;
+            margin: 0 auto 18px;
+            padding: 16px;
+        }
+
+        section h2 {
+            text-align: center;
+            margin: 0 0 18px;
+            font-size: 25px;
+            color: #164b91;
+        }
+
+        section > h3 {
+            text-align: center;
+            color: #1260c8;
+            margin: 20px 0 12px;
+        }
+
+        /* Category Buttons */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .categories a {
+            min-width: 110px;
+            text-align: center;
+            padding: 9px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            background: #1769dc;
+            color: white;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .categories a:last-child {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1769dc;
+            border: 1px solid #1769dc;
+        }
+
+        .categories a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(23, 105, 220, 0.2);
+        }
+
+        /* Event Cards */
+        .event-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .event-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            width: 390px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.90);
+            border: 1px solid rgba(220, 230, 245, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .event-icon {
+            width: 62px;
+            height: 62px;
+            min-width: 62px;
+            border-radius: 50%;
+            background: #e1f1ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 29px;
+        }
+
+        .event-details {
+            flex: 1;
+        }
+
+        .event-details h3 {
+            font-size: 16px;
+            margin: 0 0 10px;
+            color: #18356d;
+        }
+
+        .event-details p {
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 5px 0;
+            color: #344866;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 9px 22px;
+            margin-top: 8px;
+            background: #2876e8;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 13px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #164baf;
+        }
+
+        /* About Section */
+        #about {
+            text-align: center;
+            background: rgba(229, 239, 255, 0.86);
+            border-radius: 10px;
+        }
+
+        #about p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #344866;
+            margin: 0;
+        }
+
+        /* Registration Form */
+        #register {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 10px;
+        }
+
+        #register form {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 15px;
+            max-width: 100%;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #344866;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #d0d8e5;
+            border-radius: 5px;
+            background: white;
+            font-size: 13px;
+        }
+
+        .form-submit {
+            grid-column: 1 / -1;
+            text-align: center;
+        }
+
+        .form-submit button {
+            width: 240px;
+            max-width: 100%;
+        }
+
+        /* Footer */
+        footer {
+            margin: 0 -25px -18px;
+            padding: 15px;
+            text-align: center;
+            background: rgba(213, 230, 255, 0.95);
+            color: #28528b;
+            font-size: 13px;
+        }
+
+        /* Tablet and Mobile */
+        @media (max-width: 900px) {
+            .event-card {
+                width: 100%;
+            }
+
+            .header-title h1 {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                min-height: auto;
+                padding: 12px;
+                text-align: center;
+            }
+
+            .sidebar img {
+                width: 65px;
+                height: 65px;
+            }
+
+            .sidebar h2 {
+                margin: 5px;
+            }
+
+            .sidebar p {
+                margin: 5px 0 12px;
+            }
+
+            .sidebar a {
+                display: inline-block;
+                padding: 9px;
+                margin: 3px;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 12px;
+            }
+
+            header {
+                padding: 15px 10px;
+            }
+
+            .header-title {
+                gap: 10px;
+            }
+
+            .header-title img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header-title h1 {
+                font-size: 23px;
+            }
+
+            header p {
+                font-size: 14px;
+            }
+
+            section {
+                padding: 12px 5px;
+            }
+
+            section h2 {
+                font-size: 22px;
+            }
+
+            .event-card {
+                padding: 12px;
+            }
+
+            .event-icon {
+                width: 48px;
+                height: 48px;
+                min-width: 48px;
+                font-size: 23px;
+            }
+
+            #register form {
+                grid-template-columns: 1fr;
+            }
+
+            .form-submit {
+                grid-column: auto;
+            }
+
+            footer {
+                margin: 0 -12px -12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <img
+            src="https://t3.ftcdn.net/jpg/04/59/16/14/360_F_459161461_qFvS71Zajv2LLMU88cOqmMuX7p2kQJeK.jpg"
+            alt="College Club Logo">
+
+        <h2>College Club Events</h2>
+        <p>Learn | Connect | Grow</p>
+
+        <a href="#home">⌂ &nbsp; Home</a>
+        <a href="#events">▦ &nbsp; Events</a>
+        <a href="#register">♙ &nbsp; Register</a>
+        <a href="#about">ⓘ &nbsp; About Us</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main" id="home">
+
+        <!-- Header -->
+        <header>
+            <div class="header-title">
+                <img
+                    src="https://t3.ftcdn.net/jpg/04/59/16/14/360_F_459161461_qFvS71Zajv2LLMU88cOqmMuX7p2kQJeK.jpg"
+                    alt="College Club Logo">
+
+                <h1>College <span>Club Events</span></h1>
+            </div>
+
+            <p>Explore, Participate, Build Your Skills.</p>
+            <p>Discover exciting events happening in our college!</p>
+        </header>
+
+        <!-- Events -->
+        <section id="events">
+            <h2>Upcoming Events</h2>
+
+            <div class="categories">
+                <a href="#tech">Tech</a>
+                <a href="#nontech">Non-Tech</a>
+            </div>
+
+            <h3 id="tech">Tech Events</h3>
+
+            <div class="event-container">
+
+                <div class="event-card">
+                    <div class="event-icon">💻</div>
+                    <div class="event-details">
+                        <h3>Web Development Workshop</h3>
+                        <p>▦ &nbsp; Date: 12 November 2026</p>
+                        <p>📍 &nbsp; Venue: Computer Lab</p>
+                        <p>Learn HTML, CSS and basic website development.</p>
+                        <a href="#register" class="button">Register</a>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-icon">🤖</div>
+                    <div class="event-details">
+                        <h3>AI Innovation Challenge</h3>
+                        <p>▦ &nbsp; Date: 18 November 2026</p>
+                        <p>📍 &nbsp; Venue: Seminar Hall</p>
+                        <p>Work with friends to solve real-world problems.</p>
+                        <a href="#register" class="button">Register</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <h3 id="nontech">Non-Tech Events</h3>
+
+            <div class="event-container">
+
+                <div class="event-card">
+                    <div class="event-icon">🎨</div>
+                    <div class="event-details">
+                        <h3>Art and Design Fest</h3>
+                        <p>▦ &nbsp; Date: 15 November 2026</p>
+                        <p>📍 &nbsp; Venue: College Auditorium</p>
+                        <p>Show your creativity through art and design.</p>
+                        <a href="#register" class="button">Register</a>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-icon">🎤</div>
+                    <div class="event-details">
+                        <h3>Public Speaking Day</h3>
+                        <p>▦ &nbsp; Date: 20 November 2026</p>
+                        <p>📍 &nbsp; Venue: Seminar Hall</p>
+                        <p>Share your ideas and build confidence.</p>
+                        <a href="#register" class="button">Register</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- About Us -->
+        <section id="about">
+            <h2>About Us</h2>
+            <p>
+                Our college clubs help students learn new skills,
+                share their talents and participate in activities.
+            </p>
+        </section>
+
+        <!-- Registration -->
+        <section id="register">
+            <h2>Event Registration</h2>
+
+            <form action="#" method="get">
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="event">Choose an Event</label>
+                    <select id="event" name="event" required>
+                        <option value="">Select an event</option>
+                        <option>Web Development Workshop</option>
+                        <option>AI Innovation Challenge</option>
+                        <option>Art and Design Fest</option>
+                        <option>Public Speaking Day</option>
+                    </select>
+                </div>
+
+                <div class="form-submit">
+                    <button type="submit" class="button">Submit</button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>College Club Events | 2026</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
+
