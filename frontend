@@ -1,0 +1,447 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Club Events</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("https://static9.depositphotos.com/1260672/1145/i/450/depositphotos_11450943-stock-photo-background-in-show-interior-shined.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Left Sidebar */
+        .sidebar {
+            width: 190px;
+            height: 100vh;
+            background-color: white;
+            position: fixed;
+            padding: 10px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .sidebar img {
+            width: 90px;
+            height: 90px;
+        }
+
+        .sidebar h3 {
+            color: #18356d;
+            font-size: 15px;
+        }
+
+        .tagline {
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px;
+            text-align: left;
+            text-decoration: none;
+            color: #18356d;
+        }
+
+        .sidebar a:hover {
+            background-color: #e5efff;
+        }
+
+        /* Main Content */
+        .main {
+            margin-left: 190px;
+            padding: 20px;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .title img {
+            width: 80px;
+            height: 80px;
+        }
+
+        h1 {
+            color: #18356d;
+        }
+
+        h1 span {
+            color: #286bd6;
+        }
+
+        section {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #18356d;
+        }
+
+        .categories {
+            text-align: center;
+        }
+
+        .categories a {
+            display: inline-block;
+            background-color: #286bd6;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            border-radius: 20px;
+        }
+
+        /* Event Cards */
+        .events {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background-color: white;
+            width: 360px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        .event-image {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        .card h3 {
+            color: #286bd6;
+            margin-top: 0;
+        }
+
+        .card p {
+            font-size: 13px;
+        }
+
+        .button {
+            background-color: #286bd6;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Registration Form */
+        form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        form button {
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        #message {
+            text-align: center;
+            color: green;
+        }
+
+        footer {
+            background-color: #dce9ff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        /* Mobile Screen */
+        @media (max-width: 600px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .sidebar a {
+                display: inline-block;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 10px;
+            }
+
+            .title img {
+                width: 50px;
+                height: 50px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <img src="https://t3.ftcdn.net/jpg/04/59/16/14/360_F_459161461_qFvS71Zajv2LLMU88cOqmMuX7p2kQJeK.jpg"
+             alt="College Logo">
+
+        <h3>College Club Events</h3>
+        <p class="tagline">Learn | Connect | Grow</p>
+
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#register">Register</a>
+        <a href="#about">About Us</a>
+
+    </div>
+
+    <!-- Main Page -->
+    <div class="main" id="home">
+
+        <header>
+            <div class="title">
+
+                <img src="https://t3.ftcdn.net/jpg/04/59/16/14/360_F_459161461_qFvS71Zajv2LLMU88cOqmMuX7p2kQJeK.jpg"
+                     alt="College Logo">
+
+                <h1>College <span>Club Events</span></h1>
+
+            </div>
+
+            <p>Explore, Participate, Build Your Skills.</p>
+            <p>Discover exciting events happening in our college!</p>
+        </header>
+
+        <!-- Events Section -->
+        <section id="events">
+
+            <h2>Upcoming Events</h2>
+
+            <div class="categories">
+                <a href="#tech">Tech</a>
+                <a href="#nontech">Non-Tech</a>
+            </div>
+
+            <h2 id="tech">Tech Events</h2>
+
+            <div class="events">
+
+                <!-- Event 1 -->
+                <div class="card">
+
+                    <img class="event-image"
+                         src="https://img.icons8.com/fluency/96/laptop-coding.png"
+                         alt="Coding">
+
+                    <div>
+                        <h3>Web Development Workshop</h3>
+                        <p><b>Date:</b> 12 November 2026</p>
+                        <p><b>Venue:</b> Computer Lab</p>
+                        <p>Learn HTML, CSS and website development.</p>
+
+                        <a href="#register" class="button"
+                           onclick="selectEvent('Web Development Workshop')">
+                            Register
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Event 2 -->
+                <div class="card">
+
+                    <img class="event-image"
+                         src="https://img.icons8.com/fluency/96/artificial-intelligence.png"
+                         alt="AI">
+
+                    <div>
+                        <h3>AI Innovation Challenge</h3>
+                        <p><b>Date:</b> 18 November 2026</p>
+                        <p><b>Venue:</b> Seminar Hall</p>
+                        <p>Work with friends to solve real-world problems.</p>
+
+                        <a href="#register" class="button"
+                           onclick="selectEvent('AI Innovation Challenge')">
+                            Register
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <h2 id="nontech">Non-Tech Events</h2>
+
+            <div class="events">
+
+                <!-- Event 3 -->
+                <div class="card">
+
+                    <img class="event-image"
+                         src="https://img.icons8.com/fluency/96/paint-palette.png"
+                         alt="Art">
+
+                    <div>
+                        <h3>Art and Design Fest</h3>
+                        <p><b>Date:</b> 15 November 2026</p>
+                        <p><b>Venue:</b> College Auditorium</p>
+                        <p>Show your creativity through art and design.</p>
+
+                        <a href="#register" class="button"
+                           onclick="selectEvent('Art and Design Fest')">
+                            Register
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Event 4 -->
+                <div class="card">
+
+                    <img class="event-image"
+                         src="https://img.icons8.com/fluency/96/microphone.png"
+                         alt="Microphone">
+
+                    <div>
+                        <h3>Public Speaking Day</h3>
+                        <p><b>Date:</b> 20 November 2026</p>
+                        <p><b>Venue:</b> Seminar Hall</p>
+                        <p>Share your ideas and build confidence.</p>
+
+                        <a href="#register" class="button"
+                           onclick="selectEvent('Public Speaking Day')">
+                            Register
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- About Us -->
+        <section id="about">
+
+            <h2>About Us</h2>
+
+            <p style="text-align: center;">
+                Our college clubs help students learn new skills,
+                share their talents and participate in activities.
+            </p>
+
+        </section>
+
+        <!-- Registration -->
+        <section id="register">
+
+            <h2>Event Registration</h2>
+
+            <form id="registrationForm">
+
+                <label for="name">Full Name</label>
+                <input type="text" id="name"
+                       placeholder="Enter your name" required>
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email"
+                       placeholder="Enter your email" required>
+
+                <label for="event">Choose an Event</label>
+
+                <select id="event" required>
+                    <option value="">Select an event</option>
+                    <option>Web Development Workshop</option>
+                    <option>AI Innovation Challenge</option>
+                    <option>Art and Design Fest</option>
+                    <option>Public Speaking Day</option>
+                </select>
+
+                <button type="submit" class="button">Submit</button>
+
+                <p id="message"></p>
+
+            </form>
+
+        </section>
+
+        <footer>
+            <p>College Club Events | 2026</p>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+
+        // Select event when Register button is clicked
+        function selectEvent(eventName) {
+            document.getElementById("event").value = eventName;
+        }
+
+        // Form submission
+        document.getElementById("registrationForm").onsubmit = function(event) {
+
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let selectedEvent = document.getElementById("event").value;
+
+            document.getElementById("message").innerHTML =
+                "Thank you, " + name +
+                "! Your registration for " + selectedEvent +
+                " is completed.";
+
+            this.reset();
+        };
+
+    </script>
+
+</body>
+</html>
